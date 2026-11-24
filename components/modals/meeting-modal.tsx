@@ -1,0 +1,70 @@
+import Image from "next/image";
+import type { PropsWithChildren } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
+
+type MeetingModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  className?: string;
+  handleClick?: () => void;
+  buttonText?: string;
+  image?: string;
+  buttonIcon?: string;
+  isLoading?: boolean;
+};
+
+export const MeetingModal = ({
+  isOpen,
+  onClose,
+  title,
+  className,
+  children,
+  handleClick,
+  buttonText,
+  image,
+  buttonIcon,
+  isLoading = false,
+}: PropsWithChildren<MeetingModalProps>) => {
+  return (
+    <Dialog open={isOpen || isLoading} onOpenChange={onClose}>
+      <DialogContent className="glass-panel flex w-full max-w-[520px] flex-col gap-6 rounded-3xl px-7 py-9 text-white">
+        <div className="flex flex-col gap-6">
+          {image && (
+            <div className="flex justify-center">
+              <div className="glassmorphism flex-center size-20 rounded-2xl">
+                <Image src={image} alt={title} width={52} height={52} />
+              </div>
+            </div>
+          )}
+
+          <h1
+            className={cn(
+              "text-3xl font-bold leading-[42px] tracking-tight",
+              className
+            )}
+          >
+            {title}
+          </h1>
+
+          {children}
+
+          <Button
+            className="glass-btn-primary h-11 rounded-xl text-base font-semibold text-white"
+            onClick={handleClick}
+            disabled={isLoading}
+          >
+            {buttonIcon && (
+              <Image src={buttonIcon} alt={title} width={13} height={13} />
+            )}{" "}
+            &nbsp;
+            {buttonText || "Schedule Meeting"}
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};

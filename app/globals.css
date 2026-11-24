@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-dark-1: #14192a;
+  --color-dark-2: #090d18;
+  --color-dark-3: #1e253d;
+  --color-dark-4: #1b254b;
+
+  --color-blue-1: #0e78f9;
+
+  --color-sky-1: #c9ddff;
+  --color-sky-2: #ecf0ff;
+  --color-sky-3: #f5fcff;
+
+  --color-orange-1: #ff742e;
+  --color-purple-1: #830ef9;
+  --color-yellow-1: #f9a90e;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@layer base {
+  body {
+    background-color: #090d18;
+    background-image:
+      radial-gradient(at 12% 14%, rgba(14, 120, 249, 0.22) 0px, transparent 48%),
+      radial-gradient(at 88% 12%, rgba(131, 14, 249, 0.18) 0px, transparent 46%),
+      radial-gradient(at 78% 85%, rgba(6, 182, 212, 0.14) 0px, transparent 50%),
+      radial-gradient(at 18% 82%, rgba(255, 116, 46, 0.10) 0px, transparent 48%);
+    background-attachment: fixed;
+    color: #ffffff;
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* ======== glassmorphism design system ======== */
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  }
+
+  .glassmorphism2 {
+    background: rgba(12, 16, 30, 0.55);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-surface {
+    background: rgba(15, 20, 36, 0.58);
+    backdrop-filter: blur(22px) saturate(170%);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-panel {
+    background: rgba(13, 18, 34, 0.78);
+    backdrop-filter: blur(26px) saturate(180%);
+    -webkit-backdrop-filter: blur(26px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+      0 24px 64px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-input {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #ffffff;
+  }
+
+  .glass-input:focus {
+    border-color: rgba(14, 120, 249, 0.7);
+    box-shadow: 0 0 0 3px rgba(14, 120, 249, 0.2);
+    outline: none;
+  }
+
+  .glass-btn-primary {
+    background: linear-gradient(135deg, #1b85ff 0%, #4f46e5 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 8px 24px rgba(14, 120, 249, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition: all 0.2s ease;
+  }
+
+  .glass-btn-primary:hover {
+    filter: brightness(1.08);
+    box-shadow:
+      0 10px 28px rgba(14, 120, 249, 0.48),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.2s ease;
+  }
+
+  .glass-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.24);
+  }
+
+  /* ======== stream css overrides ======== */
+  .str-video__call-stats {
+    max-width: 500px;
+    position: relative;
+  }
+
+  .str-video__speaker-layout__wrapper {
+    max-height: 700px;
+  }
+
+  .str-video__participant-details {
+    color: white;
+  }
+
+  .str-video__menu-container {
+    color: white;
+    background: rgba(13, 18, 34, 0.82) !important;
+    backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+  }
+
+  .str-video__notification {
+    color: white;
+  }
+
+  .str-video__participant-list {
+    background: rgba(15, 20, 36, 0.72);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 14px;
+    border-radius: 18px;
+    color: white;
+    height: 100%;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .str-video__call-controls__button {
+    height: 40px;
+  }
+}
+
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+@media (width >= theme(--breakpoint-2xl)) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+}
+
+/* ==== clerk class override ===== */
+
+.cl-card {
+  background: rgba(15, 20, 36, 0.72) !important;
+  backdrop-filter: blur(24px) saturate(170%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5) !important;
+}
+
+.cl-userButtonPopoverActionButtonIcon {
+  color: white;
+}
+
+.cl-logoBox {
+  height: 40px;
+}
+
+.cl-dividerLine {
+  background: rgba(255, 255, 255, 0.12);
+  height: 1px;
+}
+
+.cl-socialButtonsIconButton {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cl-internal-wkkub3 {
+  color: white;
+}
+
+.cl-userButtonPopoverActionButton {
+  color: white;
+}
+
+.cl-providerIcon__github {
+  filter: invert(1);
+}
+
+/* animation */
+
+.show-block {
+  width: 100%;
+  max-width: 350px;
+  display: block;
+  animation: show 0.4s forwards ease-out;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
